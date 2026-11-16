@@ -3,27 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0F3540">
 <meta name="description" content="Pick a film you like and get five similar ones. A content-based recommender built on the TMDB 5000 dataset.">
 <title>Movie Recommender</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <a class="skip" href="#catalogue">Skip to catalogue</a>
 
-<main class="shell" id="top">
+<header class="band" id="top">
+<div class="wrap">
 
-  <header class="masthead">
+  <div class="masthead">
     <h1 class="masthead__title">Movie Recommender</h1>
     <p class="masthead__blurb">
       A content-based recommender built on the TMDB 5000 dataset.
       Type a movie name or pick one from the catalogue below, and get 5 similar movies.
     </p>
-  </header>
+  </div>
 
   <section class="picker" aria-labelledby="picker-head">
     <h2 class="section-head" id="picker-head">Get Recommendations</h2>
@@ -42,6 +44,11 @@
       <span class="starters__label">Or start with</span>
     </p>
   </section>
+
+</div>
+</header>
+
+<main class="wrap">
 
   <section class="results" id="results" aria-live="polite" hidden>
     <div class="seed" id="seed"></div>

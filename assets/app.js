@@ -62,7 +62,7 @@
     if (movie.d) bits.push(movie.d);
     var g = genreNames(movie).slice(0, 2).join(', ');
     if (g) bits.push(g);
-    if (withRating && movie.v) bits.push(movie.v.toFixed(1) + ' / 10');
+    if (withRating && movie.v) bits.push(movie.v.toFixed(1) + '\u00a0/\u00a010');
     return bits.join(' · ');
   }
 
@@ -234,7 +234,7 @@
     el.hint.textContent = '';
 
     el.seed.innerHTML = '';
-    var head = make('h2', 'section-head section-head--rule', 'Because you liked ');
+    var head = make('h2', 'section-head', 'Because you liked ');
     head.appendChild(make('span', 'seed-name', seed.t));
     el.seed.appendChild(head);
     var seedMeta = metaLine(seed, true);
@@ -273,7 +273,25 @@
     var li = make('li', 'neighbour');
     li.style.setProperty('--i', position);
 
+    var node = make('span', 'neighbour__node', position + 1);
+    node.setAttribute('aria-hidden', 'true');
+    li.appendChild(node);
+
     var body = make('div', 'neighbour__body');
+
+    /* What the two films share sits on the branch that joins them. */
+    var shared = tagIds
+      .map(function (t) { return state.tags[t]; })
+      .filter(Boolean)
+      .slice(0, 4);
+    var why = null;
+    if (shared.length) {
+      why = make('p', 'neighbour__why');
+      why.appendChild(make('span', 'neighbour__why-label', 'Shares'));
+      shared.forEach(function (tag) {
+        why.appendChild(make('span', 'neighbour__tag', tag));
+      });
+    }
 
     var title = make('h3', 'neighbour__title');
     var pick = make('button', 'neighbour__pick', movie.t);
@@ -281,22 +299,13 @@
     pick.dataset.index = index;
     pick.setAttribute('aria-label', movie.t + '. Show films like this');
     title.appendChild(pick);
+
+    if (why) body.appendChild(why);
     body.appendChild(title);
 
     var meta = metaLine(movie, true);
     if (meta) body.appendChild(make('p', 'neighbour__meta', meta));
     if (movie.o) body.appendChild(make('p', 'neighbour__overview', movie.o));
-
-    var shared = tagIds
-      .map(function (t) { return state.tags[t]; })
-      .filter(Boolean)
-      .slice(0, 4);
-    if (shared.length) {
-      var why = make('p', 'neighbour__why');
-      why.appendChild(make('span', 'neighbour__why-label', 'In common '));
-      why.appendChild(document.createTextNode(shared.join(', ')));
-      body.appendChild(why);
-    }
 
     li.appendChild(body);
 
