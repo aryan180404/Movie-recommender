@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Pick a film you like and get five similar ones. A content-based recommender built on the TMDB 5000 dataset.">
 <title>Movie Recommender</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +13,9 @@
 </head>
 <body>
 
-<main class="shell">
+<a class="skip" href="#catalogue">Skip to catalogue</a>
+
+<main class="shell" id="top">
 
   <header class="masthead">
     <h1 class="masthead__title">Movie Recommender</h1>
@@ -19,38 +23,45 @@
       A content-based recommender built on the TMDB 5000 dataset.
       Type a movie name or pick one from the catalogue below, and get 5 similar movies.
     </p>
-    <p class="stat">
-      <span class="stat__value" id="catalogue-count">&mdash;</span>
-      <span class="stat__label">films indexed</span>
-    </p>
   </header>
 
-  <section class="picker">
-    <h2 class="section-head">Get Recommendations</h2>
+  <section class="picker" aria-labelledby="picker-head">
+    <h2 class="section-head" id="picker-head">Get Recommendations</h2>
     <div class="combo">
-      <input class="combo__input" id="seed-input" type="text"
-             placeholder="Type a movie name..." autocomplete="off" spellcheck="false" disabled>
+      <div class="combo__field">
+        <input class="combo__input" id="seed-input" type="text"
+               placeholder="Type a movie name..." autocomplete="off" spellcheck="false"
+               role="combobox" aria-autocomplete="list" aria-expanded="false"
+               aria-controls="seed-options" aria-labelledby="picker-head" disabled>
+        <ul class="options" id="seed-options" role="listbox" aria-label="Matching films" hidden></ul>
+      </div>
       <button class="combo__go" id="go-btn" type="button" disabled>Recommend</button>
     </div>
-    <p class="picker__hint" id="picker-hint">Loading...</p>
+    <p class="picker__hint" id="picker-hint" role="status">Loading catalogue...</p>
+    <p class="starters" id="starters" hidden>
+      <span class="starters__label">Or start with</span>
+    </p>
   </section>
 
-  <section class="results" id="results" hidden>
-    <h2 class="section-head section-head--rule">
-      Because you liked <span class="seed-name" id="seed-title"></span>
-    </h2>
+  <section class="results" id="results" aria-live="polite" hidden>
+    <div class="seed" id="seed"></div>
     <ol class="neighbours" id="neighbours"></ol>
   </section>
 
-  <section class="catalogue">
+  <section class="catalogue" id="catalogue">
     <h2 class="section-head section-head--rule">Catalogue</h2>
     <div class="catalogue__controls">
       <input class="filter" id="catalogue-filter" type="search"
-             placeholder="Filter titles..." autocomplete="off" spellcheck="false"
+             placeholder="Filter by title, director or genre..." autocomplete="off" spellcheck="false"
              aria-label="Filter the catalogue" disabled>
       <p class="catalogue__count" id="catalogue-status" role="status"></p>
     </div>
-    <ul class="grid" id="catalogue-list"></ul>
+    <ul class="grid" id="catalogue-list" aria-busy="true">
+      <li class="skeleton"></li><li class="skeleton"></li><li class="skeleton"></li>
+      <li class="skeleton"></li><li class="skeleton"></li><li class="skeleton"></li>
+      <li class="skeleton"></li><li class="skeleton"></li><li class="skeleton"></li>
+      <li class="skeleton"></li><li class="skeleton"></li><li class="skeleton"></li>
+    </ul>
     <button class="more" id="catalogue-more" type="button" hidden>Show more</button>
   </section>
 
@@ -62,6 +73,12 @@
   </footer>
 
 </main>
+
+<a class="to-top" id="to-top" href="#top" aria-label="Back to top">
+  <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+    <path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
 
 <script src="assets/app.js"></script>
 </body>
