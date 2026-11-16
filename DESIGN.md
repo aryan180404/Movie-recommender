@@ -13,6 +13,13 @@ colors:
   pick: "#C2410C"
   pick-bright: "#F26A2E"
   match: "#0B6E66"
+  white: "#fff"
+  pick-hover: "#FF8348"
+  on-booth-link-hover: "#FFB08A"
+  on-booth-error: "#FFC2A6"
+  stock-line-hover: "#8FA096"
+  shadow-menu: "rgba(6, 28, 34, 0.45)"
+  shadow-float: "rgba(6, 28, 34, 0.6)"
 typography:
   display:
     fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
@@ -29,9 +36,60 @@ typography:
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.55
+  display-min:
+    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
+    fontSize: "2.5rem"
+    fontWeight: 700
+    lineHeight: 0.92
+  heading-min:
+    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
+    fontSize: "1.625rem"
+    fontWeight: 700
+    lineHeight: 1.05
+  title:
+    fontFamily: "Barlow, Helvetica Neue, Arial, sans-serif"
+    fontSize: "1.4375rem"
+    fontWeight: 600
+    lineHeight: 1.2
+  title-compact:
+    fontFamily: "Barlow, Helvetica Neue, Arial, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 600
+    lineHeight: 1.2
+  control:
+    fontFamily: "Barlow, Helvetica Neue, Arial, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  body-small:
+    fontFamily: "Barlow, Helvetica Neue, Arial, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  facts:
+    fontFamily: "Barlow, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  caption:
+    fontFamily: "Barlow, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  fine:
+    fontFamily: "Barlow, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 400
+    lineHeight: 1.3
+  code:
+    fontFamily: "ui-monospace, SF Mono, Menlo, Consolas, monospace"
+    fontSize: "0.8125rem"
+    fontWeight: 400
+    lineHeight: 1.55
 rounded:
   sm: "4px"
   md: "6px"
+  pill: "999px"
 components:
   button-primary:
     backgroundColor: "{colors.pick-bright}"
